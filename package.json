@@ -1,0 +1,30 @@
+{
+  "name": "chord-visualizer",
+  "version": "1.0.0",
+  "description": "A visualizer for the Chord network @boranseckin/chord",
+  "main": "app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "chord-visualizer": "src/app.js",
+    "chord-vis": "src/app.js"
+  },
+  "author": "Boran Seckin <me@boranseckin.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/boranseckin/chord-visualizer#readme",
+  "repository": "github:boranseckin/chord-visualizer",
+  "keywords": [
+    "scalable",
+    "p2p",
+    "chord",
+    "network",
+    "lookup-service",
+    "visualizer"
+  ],
+  "dependencies": {
+    "@boranseckin/chord": "^1.1.1",
+    "express": "^4.17.1"
+  }
+}
