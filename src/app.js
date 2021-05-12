@@ -8,18 +8,11 @@ const dns = require('dns');
 const express = require('express');
 
 const { default: Node, M } = require('@boranseckin/chord');
-const { hash } = require('@boranseckin/chord/dist/utils');
+const { hash, isSame } = require('@boranseckin/chord/dist/utils');
 
 const PUBLIC = path.resolve(__dirname, './public');
 
 /* ========== Chord ========== */
-
-function isSame(a, b) {
-    return (a.id === b.id)
-    && (a.hash === b.hash)
-    && (a.address === b.address)
-    && (a.port === b.port);
-}
 
 class Visualizer extends Node {
     nodes = [];
