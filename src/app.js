@@ -2,9 +2,13 @@
 
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
+const dns = require('dns');
+
 const express = require('express');
 
 const { default: Node, M } = require('@boranseckin/chord');
+const { hash } = require('@boranseckin/chord/dist/utils');
 
 const PUBLIC = path.resolve(__dirname, './public');
 
@@ -62,7 +66,7 @@ class Visualizer extends Node {
                 i = Math.floor(Math.random() * lastNodes.length);
             }
 
-            this.anchor = lastNodes[i].data;
+            this.anchor = lastNodes[i].data.node;
             this.isAnchor = true;
             console.log('Anchor is changed to', this.anchor);
             return;
@@ -138,11 +142,34 @@ class Visualizer extends Node {
     }
 }
 
-const vis = new Visualizer('127.0.0.1', 55555, { id: 0, hash: 'F04F1F', address: '127.0.0.1', port: 50000}, () => {
-    setInterval(async () => {
-        await vis.walk();
-        vis.saveData();
-    }, 2000);
+const {
+    VIS_ADDRESS,
+    VIS_PORT,
+    VIS_ANCHOR_ID,
+    VIS_ANCHOR_ADDRESS,
+    VIS_ANCHOR_PORT,
+} = process.env;
+
+dns.lookup(VIS_ANCHOR_ADDRESS, (err, res) => {
+    if (err) console.log(err);
+    const vis = new Visualizer(
+        VIS_ADDRESS || os.networkInterfaces().eth0[0].address,
+        Number(VIS_PORT),
+        {
+            id: Number(VIS_ANCHOR_ID),
+            hash: hash(`${res}:${Number(VIS_ANCHOR_PORT)}`).slice(10, 16).toUpperCase(),
+            address: res,
+            port: Number(VIS_ANCHOR_PORT),
+        },
+        () => {
+            console.log(vis.encapsulateSelf());
+            vis.endLoop();
+            setInterval(async () => {
+                await vis.walk();
+                vis.saveData();
+            }, 2000);
+        }
+    );
 });
 
 /* ========== Express ========== */
