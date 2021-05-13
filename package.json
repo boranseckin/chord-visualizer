@@ -1,6 +1,6 @@
 {
   "name": "chord-visualizer",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A visualizer for the Chord network @boranseckin/chord",
   "main": "app.js",
   "scripts": {
