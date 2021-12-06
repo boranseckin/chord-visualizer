@@ -24,7 +24,7 @@
     "visualizer"
   ],
   "dependencies": {
-    "@boranseckin/chord": "^1.1.1",
+    "@boranseckin/chord": "^1.2.2",
     "express": "^4.17.1"
   }
 }
