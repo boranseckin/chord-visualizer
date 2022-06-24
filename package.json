@@ -11,7 +11,7 @@
     "chord-visualizer": "src/app.js",
     "chord-vis": "src/app.js"
   },
-  "author": "Boran Seckin <me@boranseckin.com>",
+  "author": "Boran Seckin <boran@boranseckin.com>",
   "license": "MIT",
   "homepage": "https://github.com/boranseckin/chord-visualizer#readme",
   "repository": "github:boranseckin/chord-visualizer",
@@ -24,7 +24,7 @@
     "visualizer"
   ],
   "dependencies": {
-    "@boranseckin/chord": "^1.2.2",
+    "@boranseckin/chord": "^1.2.4",
     "express": "^4.17.1"
   }
 }
